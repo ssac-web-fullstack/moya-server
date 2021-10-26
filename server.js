@@ -1,10 +1,21 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const mysql = require('mysql');
+const dbConfig = require('./db-config.json');
 
 const user = require('./routes/user');
 const board = require('./routes/board');
 const chat = require('./routes/chat');
+
+const db = mysql.createPool({
+  host: dbConfig.host,
+  user: dbConfig.user,
+  password: dbConfig.password,
+  database: dbConfig.database,
+  timezone: dbConfig.timezone,
+  connectionLimit: dbConfig.connectionLimit,
+});
 
 app.use(cors());
 app.use(express.json());
