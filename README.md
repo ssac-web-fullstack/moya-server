@@ -5,11 +5,3 @@
 ### **User API**
 
 -
-
-### **Board API**
-
--
-
-### **Chat API**
-
--
