@@ -20,7 +20,10 @@
   "homepage": "https://github.com/ssac-web-fullstack/moya-server#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "socket.io": "^4.3.2",
+    "uuid": "^8.3.2"
   }
 }
