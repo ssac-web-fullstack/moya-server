@@ -22,7 +22,7 @@ const {
   getUsersInRoom,
 } = require('./utils/user');
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 
 app.use('/api/0.1/user', user);
