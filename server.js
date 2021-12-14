@@ -22,7 +22,7 @@ const {
   getUsersInRoom,
 } = require('./utils/user');
 
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/0.1/user', user);
@@ -33,14 +33,14 @@ io.on('connection', (socket) => {
   console.log('user connected');
 
   socket.on('message', ({ message }) => {
-    console.log(message);
+    console.log(message, 'message');
     const user = getUser(socket.id);
     io.to(user.room).emit('message', { id: uuidv4(), message });
   });
 
   socket.on('join', ({ username, roomNo }) => {
     const { user } = addUser({ id: socket.id, name: username, room: roomNo });
-    console.log(user);
+    console.log(user, 'user');
     socket.join(user.room);
     io.to(roomNo).emit('message', {
       id: uuidv4(),
@@ -50,6 +50,11 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
+    const num = getUsersInRoom(1);
+    console.log(num);
+    const user = getUser(socket.id);
+    console.log(user);
+    // socket.leave(user.room);
     removeUser(socket.id);
     console.log('연결이 종료');
   });

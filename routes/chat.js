@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 let router = express.Router();
 const db = require('../db');
 
@@ -19,5 +19,13 @@ router.post('/', (req, res) => {
     res.send('good');
   });
 });
-
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'DELETE FROM Chat WHERE id = ?';
+  db.query(sql, id, (err, result) => {
+    if (err) console.error(err);
+    console.log(result);
+    res.send('good');
+  });
+});
 module.exports = router;
