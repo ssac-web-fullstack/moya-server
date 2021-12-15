@@ -39,12 +39,12 @@ router.post('/', async (req, res) => {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
       });
 
-      return res.status(200).send({
+      res.status(200).send({
         auth: true,
         message: 'Login Success',
       });
     } else {
-      return res.status(401).send({
+      res.status(401).send({
         auth: false,
         message: 'Unauthorized',
       });

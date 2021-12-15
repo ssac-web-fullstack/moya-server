@@ -50,17 +50,15 @@ module.exports = {
     try {
       const redisToken = await redisAsync(loginId);
       if (redisToken === token) {
-        try {
-          jwt.verify(token, refreshSecret);
-          return true;
-        } catch (err) {
-          return false;
-        }
+        return true;
       } else {
         return false;
       }
     } catch (err) {
-      return false;
+      return {
+        auth: false,
+        message: err.message,
+      };
     }
   },
 };

@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const { redisClient } = require('../utils/redis-utils');
 const {
   signAccessToken,
   verifyAccessToken,
   verifyRefreshToken,
 } = require('./utils/redis-utils');
-const { redisClient } = require('../utils/redis-utils');
 
 dotenv.config();
 
@@ -17,7 +17,7 @@ const {
 
 const authChecker = async (req, res) => {
   try {
-    const accessCookie = await req.singedCookies;
+    const accessCookie = await req.cookies;
 
     if (!accessCookie) {
       return res.status(401).json({

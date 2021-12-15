@@ -13,7 +13,7 @@ const app = express();
 dotenv.config();
 app.use(cors());
 app.use(express.json());
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser());
 
 app.use('/api/0.1/regist', regist);
 app.use('/api/0.1/login', login);
